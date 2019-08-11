@@ -17,10 +17,7 @@ const handleApiCall = (req, res) => {
       console.log(data);
       res.json(data);
     })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json(`unable to work with API: ${JSON.stringify(err)}`);
-    });
+    .catch(err => res.status(400).json("unable to work with API"));
 };
 
 const handleImage = (req, res, db) => {
