@@ -10,6 +10,7 @@ const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 const auth = require("./controllers/authorization");
+const signout = require("./controllers/signout");
 
 const db = knex({
   client: "pg",
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
   res.send("It's Working!");
 });
 app.post("/signin", signin.signinAuthentication(db, bcrypt));
+app.post("/signout", auth.requireAuth, signout.handleSignout);
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
